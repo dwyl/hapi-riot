@@ -30,7 +30,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "hoek": "^4.0.2",
     "riot": "^2.6.1"
   }
 }

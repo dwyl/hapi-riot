@@ -10,29 +10,32 @@ server.connection({ port: port });
 server.register(Vision, (err) => {
 
     if (err) {
-        console.log('Failed to load vision.');
+      console.log('Failed to load vision.');
     }
 
     server.views({
-        engines: {
-            tag: HapiRiotViews
-        },
-        relativeTo: __dirname,
-        path: 'views',
-        compileOptions: {
-          // test: 'true',
-            // layoutPath: Path.join(__dirname, 'views'),
-            // layout: 'layout'
-        }
+      engines: {
+        tag: HapiRiotViews
+      },
+      relativeTo: __dirname,
+      path: 'views',
+      compileOptions: {
+        // test: 'true',
+        // layoutPath: Path.join(__dirname, 'views'),
+        // layout: 'layout'
+      }
     });
 
     server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, reply) => {
-
-            reply.view('index', { title: 'My Amazing Title!' });
-        }
+      method: 'GET',
+      path: '/',
+      handler: (request, reply) => {
+        var items = [
+          { title: 'Learn Riot', status: done },
+          { title: 'Investigate ' }
+        ]
+        reply.view('index', { title: 'My Amazing Title!', greeting: 'Hello!' });
+      }
     });
 
     // server.route({
@@ -44,12 +47,12 @@ server.register(Vision, (err) => {
     //     }
     // });
 
-    server.start((err) => {
+  server.start((err) => {
 
-        if (err) {
-            throw err;
-        }
+    if (err) {
+      throw err;
+    }
 
-        console.log('Server is listening at ' + server.info.uri);
-    });
+    console.log('Server is listening at ' + server.info.uri);
+  });
 });
