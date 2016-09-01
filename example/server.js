@@ -2,13 +2,7 @@
 const Hapi = require('hapi');
 const Path = require('path');
 const Vision = require('vision');
-const HapiReactViews = require('../lib');
-
-
-// require('babel-core/register')({
-//     presets: ['react', 'es2015']
-// });
-
+const HapiRiotViews = require('../lib');
 
 const server = new Hapi.Server();
 var port = process.env.PORT || 8000;
@@ -21,14 +15,15 @@ server.register(Vision, (err) => {
 
     server.views({
         engines: {
-            tag: HapiReactViews
+            tag: HapiRiotViews
         },
         relativeTo: __dirname,
         path: 'views',
-        // compileOptions: {
-        //     layoutPath: Path.join(__dirname, 'views'),
-        //     layout: 'layout'
-        // }
+        compileOptions: {
+          // test: 'true',
+            // layoutPath: Path.join(__dirname, 'views'),
+            // layout: 'layout'
+        }
     });
 
     server.route({
