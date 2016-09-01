@@ -31,7 +31,7 @@ server.register(Vision, (err) => {
         path: '/',
         handler: (request, reply) => {
 
-            reply.view('index', { title: 'It Works!!!!!!' });
+            reply.view('index', { title: 'My Amazing Title!' });
         }
     });
 
