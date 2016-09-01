@@ -18,7 +18,6 @@
     "report": "open coverage/lcov-report/index.html"
   },
   "pre-commit": [
-    "jshint",
     "coverage"
   ],
   "devDependencies": {
@@ -26,13 +25,12 @@
     "istanbul": "^0.4.5",
     "pre-commit": "^1.1.3",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "vision": "^4.1.0"
   },
   "license": "MIT",
   "dependencies": {
+    "hoek": "^4.0.2",
     "riot": "^2.6.1"
-  },
-  "pre-commit": [
-    "coverage"
-  ]
+  }
 }
