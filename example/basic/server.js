@@ -19,7 +19,7 @@ server.register(Vision, (err) => {
       },
       relativeTo: __dirname,
       path: 'views',
-      compileOptions: {
+      compileOptions: { // keeping these here till we add "Universal"
         // test: 'true',
         // layoutPath: Path.join(__dirname, 'views'),
         // layout: 'layout'
@@ -31,10 +31,10 @@ server.register(Vision, (err) => {
       path: '/',
       handler: (request, reply) => {
         var items = [
-          { title: 'Learn Riot', status: done },
-          { title: 'Investigate ' }
+          { title: 'Learn Riot', status: 'done' },
+          { title: 'Investigate', status: 'assigned', assignedTo: 'nelson'  }
         ]
-        reply.view('index', { title: 'My Amazing Title!', greeting: 'Hello!' });
+        reply.view('index', { title: 'My Amazing Title!', greeting: 'Hello!', todos: items });
       }
     });
 
