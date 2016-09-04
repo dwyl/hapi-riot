@@ -8,7 +8,7 @@
     "url": "https://github.com/dwyl/hapi-riot"
   },
   "engines": {
-    "node": ">=4.2.3"
+    "node": ">=4.5.0"
   },
   "scripts": {
     "quick": "./node_modules/tape/bin/tape ./test/*.test.js | node_modules/tap-spec/bin/cmd.js",
