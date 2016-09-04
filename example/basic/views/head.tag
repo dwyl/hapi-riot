@@ -5,5 +5,5 @@
 
   <title>{opts.title}</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.2.0/css/tachyons.min.css"/>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/tachyons@4.2.0/css/tachyons.min.css"/> -->
 </head>

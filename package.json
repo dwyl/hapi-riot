@@ -21,6 +21,7 @@
     "coverage"
   ],
   "devDependencies": {
+    "decache": "^4.1.0",
     "hapi": "^15.0.3",
     "istanbul": "^0.4.5",
     "pre-commit": "^1.1.3",
