@@ -1,5 +1,11 @@
 # hapi-riot
 
+[![Build Status](https://travis-ci.org/dwyl/hapi-riot.svg?branch=master)](https://travis-ci.org/dwyl/hapi-riot)
+[![codecov](https://codecov.io/gh/dwyl/hapi-riot/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/hapi-riot)
+[![Code Climate](https://codeclimate.com/github/dwyl/hapi-riot/badges/gpa.svg)](https://codeclimate.com/github/dwyl/hapi-riot)
+[![dependencies Status](https://david-dm.org/dwyl/hapi-riot/status.svg)](https://david-dm.org/dwyl/hapi-riot)
+[![devDependencies Status](https://david-dm.org/dwyl/hapi-riot/dev-status.svg)](https://david-dm.org/dwyl/hapi-riot?type=dev)
+
 Render Riot Components Server-side in your Hapi Web Application.
 
 ## _Why?_
