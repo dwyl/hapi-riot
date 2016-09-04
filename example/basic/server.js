@@ -41,7 +41,7 @@ server.register(Vision, (err) => {
   });
 
   server.start((err) => {
-    console.log(err);
+    // console.log(err);
     assert(!err); // Throw error if server fails to start
     console.log('Server is listening at ' + server.info.uri);
   });
