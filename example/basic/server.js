@@ -35,14 +35,14 @@ server.register(Vision, (err) => {
     }
   });
 
-  // server.route({
-  //     method: 'GET',
-  //     path: '/about',
-  //     handler: (request, reply) => {
-  //
-  //         reply.view('about', { title: 'About Page' });
-  //     }
-  // });
+  server.route({
+      method: 'GET',
+      path: '/hello/{yourname*}',
+      handler: (request, reply) => {
+
+          reply.view('hello', { name: request.params.yourname });
+      }
+  });
 
   server.start((err) => {
 
@@ -53,3 +53,5 @@ server.register(Vision, (err) => {
     console.log('Server is listening at ' + server.info.uri);
   });
 });
+
+module.exports = server;

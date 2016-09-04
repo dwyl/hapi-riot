@@ -1,3 +1,3 @@
 <about>
-<p> about us </p>
+<p> we are {opts.name}</p>
 </about>
