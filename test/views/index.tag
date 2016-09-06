@@ -1,5 +1,5 @@
 <html>
   <body>
-    <h1>Hello World { opts.title }</h1>
+    <h1>Hello { opts.title }</h1>
   </body>
 </html>

@@ -96,3 +96,23 @@ server.views({ // initialise
   }
 });
 ```
+
+## Lessons Learned & "Gotchas"
+
+### 1. Don't leave tag files empty!
+
+e.g: if you create a new tag `views/bye.tag` and _forget_ to
+write some `html` code inside it you will see a _stranage_ error
+when you attempt to render it or _any other existing tag_!
+
+When you create a new tag add _something_ to it immediately. e.g: `views/bye.tag`
+```js
+<bye>
+  <h1> Goodbye {opts.name}! </h1>
+</bye>
+```
+
+### 2. `console.log` in your `.tag` file ...
+
+if you write a `console.log('your message')` and render it on the server,
+it will log out in your server's `stdout` (_i.e. your terminal_).
