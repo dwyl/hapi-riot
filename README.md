@@ -1,6 +1,7 @@
 # `hapi-riot`
 
-***Render Riot Components Server-side*** in your Hapi.js Web Application.
+***Render Riot Components Server-side*** in your Hapi.js Web Application.  
+<small>(_supports progressive enhancement on the client so it **Works Everywhere All The Time<sup>TM</sup>**_)</small>
 
 [![Build Status](https://travis-ci.org/dwyl/hapi-riot.svg?branch=master)](https://travis-ci.org/dwyl/hapi-riot)
 [![codecov](https://codecov.io/gh/dwyl/hapi-riot/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/hapi-riot)
@@ -31,17 +32,11 @@ for one reason or another don't have the _latest device/browser_,
 don't have the most _reliable_ internet connection
 or have _dissabled JavaScript_ in their browser for [_**security reasons**_](http://programmers.stackexchange.com/questions/26179/why-do-people-disable-javascript).
 
-#### Read More
-
-+ The 1% figure - https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/
-+ Why you _should_ support JS disabled: http://www.punkchip.com/why-support-javascript-disabled/
-
 ### The Page _Loads Faster_...
 
 Pages rendered on the server can send the _absolute minimum_ markup to the client.
-This means the "_time to first paint_" is faster
-The is no "_benchmark_" that
-
+This means the "_time to first paint_" is **_always_ faster** than loading a client-side framework
+and rendering a page on the client. So, your app/site _is_ and _feels_ faster to people.
 
 ### Why aren't all apps built this way?
 
@@ -52,6 +47,10 @@ than they _need_ to do.
 We are on a _quest_ to _change_ the perception that _universal_ rendering is
 "_more difficult_" and help people write code that _**Works Everywhere All The Time<sup>TM</sup>**_
 
+#### Read More
+
++ The 1% figure - https://gds.blog.gov.uk/2013/10/21/how-many-people-are-missing-out-on-javascript-enhancement/
++ Why you _should_ support JS disabled: http://www.punkchip.com/why-support-javascript-disabled/
 
 
 ## _What?_

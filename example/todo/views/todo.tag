@@ -1,6 +1,6 @@
 <todo>
 
-  <h3>{ opts.title }</h3>
+  <h3>{ opts.title || My Todos }</h3>
 
   <ul>
     <li each={ items.filter(whatShow) }>
@@ -10,24 +10,19 @@
     </li>
   </ul>
 
-  <form onsubmit={ add }>
+  <form method='POST' action='save' onsubmit={ add }>
     <input name="input" onkeyup={ edit }>
-    <button disabled={ !text }>Add #{ items.filter(whatShow).length + 1 }</button>
+    <button>Add #{ items.filter(whatShow).length + 1 }</button>
 
     <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>
     X{ items.filter(onlyDone).length } </button>
   </form>
 
-  <!-- this script tag is optional -->
-  <script>
-    this.items = opts.items || [
-      { title: 'Avoid excessive caffeine', done: true },
-      { title: 'Hidden item',  hidden: true },
-      { title: 'Be nice to people', done: true  },
-      { title: 'Learn how to use Riot.js' }
-    ]
 
-    console.log(this.items);
+  <script>
+    this.items = opts.items;
+
+    console.log('this.items', opts.items);
     edit(e) {
       this.text = e.target.value
     }

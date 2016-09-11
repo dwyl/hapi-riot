@@ -6,6 +6,15 @@ var HapiRiotViews = require('../../lib/index.js');
 
 var server = new Hapi.Server();
 var port = process.env.PORT || 8000;
+
+// obviously this be per-user in a Data Store
+var state = [
+  { title: 'Avoid excessive caffeine', done: true },
+  { title: 'Hidden item',  hidden: true },
+  { title: 'Be nice to people', done: true  },
+  { title: 'Learn how to use Riot.js' }
+]
+
 server.connection({ port: port });
 server.register(Vision, (err) => {
   assert(!err); // Halt start if Vision fails to load.
@@ -27,20 +36,27 @@ server.register(Vision, (err) => {
     method: 'GET',
     path: '/',
     handler: (request, reply) => {
-      reply.view('index', { title: 'My Amazing Title!' });
+      var opts = {
+        title: 'My Amazing Title!',
+      }
+      reply.view('index', opts);
     }
   });
 
   server.route({
-      method: 'GET',
-      path: '/hello/{yourname*}',
+      method: 'POST',
+      path: '/save',
       handler: (request, reply) => {
-          reply.view('hello', { name: request.params.yourname || 'World' });
+        console.log('pay', request.payload);
+        if(request.payload.input) {
+          console.log('new: ', {title: request.payload.input})
+          state.push({title: request.payload.input});
+        }
+        reply.view('index', {items: state });
       }
   });
 
   server.start((err) => {
-    // console.log(err);
     assert(!err); // Throw error if server fails to start
     console.log('Server is listening at ' + server.info.uri);
   });

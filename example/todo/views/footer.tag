@@ -1,3 +1,3 @@
 <footer>
-  <p><small>Copyright @dwyl { new Date().getFullYear() }</small></p>
+  <p><small>Feedback?</small></p>
 </footer>
