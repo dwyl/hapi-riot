@@ -42,6 +42,8 @@ server.register(Vision, (err) => {
         console.log("db.get('todolist') err", err, "value:", value);
         var opts = value ? JSON.parse(value) : {};
         opts.title = 'My Todo List';
+        opts.items = opts.items || [];
+        opts.items.push({title: 'totes done', done: true });
         reply.view('index', opts);
       })
     }
@@ -62,6 +64,7 @@ server.register(Vision, (err) => {
             opts.items.push({title: request.payload.input});
           }
           db.put('todolist', JSON.stringify(opts), function (err) {
+            opts.items.push({title: 'totes done', done: true });
             console.log("db.put('todolist') err", err);
             reply.view('index', opts);
           });

@@ -1,10 +1,9 @@
 <html>
   <head title={ opts.title }></head>
-  <body>
+  <body class="learn-bar">
 
     <todo items={opts.items}></todo>
-
-    <footer></footer>
+    
   <script>
 
   </script>

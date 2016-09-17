@@ -1,22 +1,34 @@
 <todo>
 
-  <h3>{ opts.title || My Todos }</h3>
-
-  <ul>
-    <li each={ items.filter(whatShow) }>
-      <label class={ completed: done }>
-        <input type="checkbox" checked={ done } onclick={ parent.toggle }> { title }
-      </label>
-    </li>
-  </ul>
-
+<section id="todoapp">
   <form method='POST' action='save' onsubmit={ add }>
-    <input name="input" onkeyup={ edit }>
-    <button>Add #{ items.filter(whatShow).length + 1 }</button>
+  <header id="header"><h1>todos</h1>
+    <input id="new-todo" placeholder="What needs to be done?" name="input" onkeyup={ edit }>
+  </header>
 
-    <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>
-    X{ items.filter(onlyDone).length } </button>
+    <section id="main">
+      <input id="toggle-all" type="checkbox">
+      <ul id="todo-list">
+        <li class={ completed: done } each={ items.filter(whatShow) }>
+          <div class="view">
+            <input type="checkbox" class="toggle" checked={ done } onclick={ parent.toggle }>
+              <label>{ title }</label>
+              <button class="destroy"></button>
+          </div>
+          <input class="edit">
+        </li>
+      </ul>
+    </section>
+
+    <!-- <button>Add #{ items.filter(whatShow).length + 1 }</button> -->
+
+    <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>Save</button>
   </form>
+  <footer></footer>
+</section>
+
+
+
 
 
   <script>
