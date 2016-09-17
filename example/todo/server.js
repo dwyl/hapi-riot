@@ -43,7 +43,7 @@ server.register(Vision, (err) => {
         var opts = value ? JSON.parse(value) : {};
         opts.title = 'My Todo List';
         opts.items = opts.items || [];
-        opts.items.push({title: 'totes done', done: true });
+        opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
         reply.view('index', opts);
       })
     }
@@ -64,10 +64,36 @@ server.register(Vision, (err) => {
             opts.items.push({title: request.payload.input});
           }
           db.put('todolist', JSON.stringify(opts), function (err) {
-            opts.items.push({title: 'totes done', done: true });
-            console.log("db.put('todolist') err", err);
+            opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
             reply.view('index', opts);
           });
+        });
+      }
+  });
+
+  server.route({
+      method: 'GET',
+      path: '/active',
+      handler: (request, reply) => {
+        db.get('todolist', function (err, value) {
+          var opts = value ? JSON.parse(value) : {};
+          opts.items = opts.items || [];
+          opts.items = opts.items.filter(function(item) { return !item.done; });
+          reply.view('index', opts);
+        });
+      }
+  });
+
+  server.route({
+      method: 'GET',
+      path: '/done',
+      handler: (request, reply) => {
+        db.get('todolist', function (err, value) {
+          var opts = value ? JSON.parse(value) : {};
+          opts.items = opts.items || [];
+          opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
+          opts.items = opts.items.filter(function(item) { return item.done; });
+          reply.view('index', opts);
         });
       }
   });

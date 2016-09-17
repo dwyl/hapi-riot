@@ -22,9 +22,9 @@
 
     <!-- <button>Add #{ items.filter(whatShow).length + 1 }</button> -->
 
-    <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>Save</button>
+    <!-- <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>Save</button> -->
   </form>
-  <footer></footer>
+  <footer items={items}></footer>
 </section>
 
 
