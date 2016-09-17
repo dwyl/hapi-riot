@@ -4,8 +4,6 @@
   <meta name="description" content="a basic page">
 
   <title>{opts.title}</title>
-
-  <!-- <link rel="stylesheet" href="https://unpkg.com/tachyons@4.2.0/css/tachyons.min.css"/> -->
   <link rel="stylesheet" href="http://todomvc.com/examples/mithril/node_modules/todomvc-common/base.css">
   <link rel="stylesheet" href="http://todomvc.com/examples/mithril/node_modules/todomvc-app-css/index.css">
 </head>
