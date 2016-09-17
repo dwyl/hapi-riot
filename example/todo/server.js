@@ -1,7 +1,9 @@
 'use strict';
 var Hapi = require('hapi');
 var Vision = require('vision');
-var assert = require('assert')
+var assert = require('assert');
+var level = require('level'); // https://github.com/Level/level
+var db = level(__dirname + '/db');
 var HapiRiotViews = require('../../lib/index.js');
 
 var server = new Hapi.Server();
@@ -36,10 +38,12 @@ server.register(Vision, (err) => {
     method: 'GET',
     path: '/',
     handler: (request, reply) => {
-      var opts = {
-        title: 'My Amazing Title!',
-      }
-      reply.view('index', opts);
+      db.get('todolist', function (err, value) {
+        console.log("db.get('todolist') err", err, "value:", value);
+        var opts = value ? JSON.parse(value) : {};
+        opts.title = 'My Todo List';
+        reply.view('index', opts);
+      })
     }
   });
 
@@ -47,12 +51,21 @@ server.register(Vision, (err) => {
       method: 'POST',
       path: '/save',
       handler: (request, reply) => {
-        console.log('pay', request.payload);
-        if(request.payload.input) {
-          console.log('new: ', {title: request.payload.input})
-          state.push({title: request.payload.input});
-        }
-        reply.view('index', {items: state });
+        console.log('request.payload', request.payload);
+        db.get('todolist', function (err, value) {
+          console.log("db.get('todolist') err", err, "value:", value);
+          var opts = value ? JSON.parse(value) : {};
+          opts.title = 'My Todo List';
+          opts.items = opts.items || [];
+          if(request.payload.input) {
+            console.log('new: ', {title: request.payload.input})
+            opts.items.push({title: request.payload.input});
+          }
+          db.put('todolist', JSON.stringify(opts), function (err) {
+            console.log("db.put('todolist') err", err);
+            reply.view('index', opts);
+          });
+        });
       }
   });
 
