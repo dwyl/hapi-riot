@@ -24,7 +24,7 @@
 
     <!-- <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>Save</button> -->
   </form>
-  <footer items={items}></footer>
+  <footer items={items} path={opts.path}></footer>
 </section>
 
 
@@ -33,8 +33,8 @@
 
   <script>
     this.items = opts.items;
-
-    console.log('this.items', opts.items);
+    console.log('opts.items', opts.items);
+    console.log('todo.tag opts.path', opts.path);
     edit(e) {
       this.text = e.target.value
     }

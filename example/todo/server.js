@@ -43,6 +43,7 @@ server.register(Vision, (err) => {
         var opts = value ? JSON.parse(value) : {};
         opts.title = 'My Todo List';
         opts.items = opts.items || [];
+        opts.path = '/all';
         opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
         reply.view('index', opts);
       })
@@ -65,6 +66,7 @@ server.register(Vision, (err) => {
           }
           db.put('todolist', JSON.stringify(opts), function (err) {
             opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
+            opts.path = '/all'
             reply.view('index', opts);
           });
         });
@@ -79,6 +81,7 @@ server.register(Vision, (err) => {
           var opts = value ? JSON.parse(value) : {};
           opts.items = opts.items || [];
           opts.items = opts.items.filter(function(item) { return !item.done; });
+          opts.path = request.path
           reply.view('index', opts);
         });
       }
@@ -93,6 +96,8 @@ server.register(Vision, (err) => {
           opts.items = opts.items || [];
           opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
           opts.items = opts.items.filter(function(item) { return item.done; });
+          console.log('request.path', request.path);
+          opts.path = request.path
           reply.view('index', opts);
         });
       }
