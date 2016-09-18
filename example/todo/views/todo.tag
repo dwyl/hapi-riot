@@ -9,11 +9,11 @@
     <section id="main">
       <input id="toggle-all" type="checkbox">
       <ul id="todo-list">
-        <li class={ completed: done } each={ items.filter(whatShow) }>
+        <li each={ items.filter(whatShow) } class={ completed: done } >
           <div class="view">
-            <input type="checkbox" class="toggle" checked={ done } onclick={ parent.toggle }>
-              <label>{ title }</label>
-              <button class="destroy"></button>
+            <input name="isdone-{id}" type="checkbox" class="toggle" checked={ done } onclick={ parent.toggle }>
+            <label >{ title }</label>
+            <button class="destroy"></button>
           </div>
           <input class="edit">
         </li>
@@ -22,14 +22,10 @@
 
     <!-- <button>Add #{ items.filter(whatShow).length + 1 }</button> -->
 
-    <!-- <button disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>Save</button> -->
+    <!-- <button onclick={ removeAllDone }>Save</button> -->
+    <footer items={items} path={opts.path}></footer>
   </form>
-  <footer items={items} path={opts.path}></footer>
 </section>
-
-
-
-
 
   <script>
     this.items = opts.items;

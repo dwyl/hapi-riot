@@ -26,12 +26,7 @@ server.register(Vision, (err) => {
       tag: HapiRiotViews
     },
     relativeTo: __dirname,
-    path: 'views',
-    compileOptions: { // keeping these here till we add "Universal"
-      // test: 'true',
-      // layoutPath: Path.join(__dirname, 'views'),
-      // layout: 'layout'
-    }
+    path: 'views'
   });
 
   server.route({
@@ -39,12 +34,9 @@ server.register(Vision, (err) => {
     path: '/',
     handler: (request, reply) => {
       db.get('todolist', function (err, value) {
-        console.log("db.get('todolist') err", err, "value:", value);
         var opts = value ? JSON.parse(value) : {};
-        opts.title = 'My Todo List';
         opts.items = opts.items || [];
         opts.path = '/all';
-        opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
         reply.view('index', opts);
       })
     }
@@ -54,18 +46,35 @@ server.register(Vision, (err) => {
       method: 'POST',
       path: '/save',
       handler: (request, reply) => {
-        console.log('request.payload', request.payload);
+        // console.log(' - - - - - - - - - - - - - - - - - ');
+        // console.log('request.payload', request.payload);
+        // console.log(' - - - - - - - - - - - - - - - - - ');
+
         db.get('todolist', function (err, value) {
-          console.log("db.get('todolist') err", err, "value:", value);
+          // console.log("db.get('todolist') err", err, "value:", value);
           var opts = value ? JSON.parse(value) : {};
           opts.title = 'My Todo List';
           opts.items = opts.items || [];
           if(request.payload.input) {
-            console.log('new: ', {title: request.payload.input})
-            opts.items.push({title: request.payload.input});
+            opts.items.push({title: request.payload.input, id: opts.items.length });
+          }
+          // mark totdo items as done
+          if(request.payload) {
+            var done = Object.keys(request.payload).map(function(k) {
+              if(k.indexOf('isdone') > -1) {
+                return parseInt(k.split('isdone-')[1], 10);
+              }
+            });
+
+            opts.items = opts.items.map(function (item) {
+              if(item && done.indexOf(item.id) > -1) {
+                item.done = true;
+              }
+              return item;
+            });
           }
           db.put('todolist', JSON.stringify(opts), function (err) {
-            opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
+            // opts.items.push({title: 'Write Server-Side-Rendered todo-list example in Riot.js', done: true });
             opts.path = '/all'
             reply.view('index', opts);
           });

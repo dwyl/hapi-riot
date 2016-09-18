@@ -5,7 +5,7 @@
     <li><a href="/active" class="{selected: selected('/active')}">Active</a></li>
     <li><a href="/done" class="{selected: selected('/done')}">Completed</a></li>
   </ul>
-  <button id="clear-completed">Clear completed</button>
+  <button id="clear-completed">Save</button>
   <script>
     // console.log('opts:', opts)
     this.remaining = opts.items.filter(function(i){return !i.done }).length;
