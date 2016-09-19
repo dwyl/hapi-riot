@@ -4,18 +4,9 @@ var Vision = require('vision');
 var assert = require('assert');
 var level = require('level'); // https://github.com/Level/level
 var db = level(__dirname + '/db');
-var HapiRiotViews = require('../../lib/index.js');
 
 var server = new Hapi.Server();
 var port = process.env.PORT || 8000;
-
-// obviously this be per-user in a Data Store
-var state = [
-  { title: 'Avoid excessive caffeine', done: true },
-  { title: 'Hidden item',  hidden: true },
-  { title: 'Be nice to people', done: true  },
-  { title: 'Learn how to use Riot.js' }
-]
 
 server.connection({ port: port });
 server.register(Vision, (err) => {
@@ -23,7 +14,7 @@ server.register(Vision, (err) => {
 
   server.views({
     engines: {
-      tag: HapiRiotViews
+      tag: require('../../lib/index.js')
     },
     relativeTo: __dirname,
     path: 'views'
