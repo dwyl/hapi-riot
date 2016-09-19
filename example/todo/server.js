@@ -55,7 +55,9 @@ server.register(Vision, (err) => {
           var opts = value ? JSON.parse(value) : {};
           opts.title = 'My Todo List';
           opts.items = opts.items || [];
-          if(request.payload.input) {
+          // prevent duplicate items
+          var titles = opts.items.map(function(item){ return item.title });
+          if(request.payload.input && titles.indexOf(request.payload.input) === -1) {
             opts.items.push({title: request.payload.input, id: opts.items.length });
           }
           // mark totdo items as done
