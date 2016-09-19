@@ -1,9 +1,20 @@
 var test = require('tape');
+var path = require('path');
 var hapiriot = require('../lib/index.js'); // yes, the /index.js can be omitted
 
 test('Renderer has compile method', function (t) {
   t.equal(typeof hapiriot, 'object', 'hapiriot is an Object');
   t.equal(typeof hapiriot.compile, 'function', 'hapiriot has a compile method');
+  t.end();
+});
+
+test('Manually test the compile method (witout a server)', function (t) {
+  var filename = path.join(__dirname, 'views', 'index.tag');
+  console.log('>>> filename: ', filename)
+  // yes, the fomat of the .compile method is a curry...
+  var actual = hapiriot.compile(0, {filename: filename})({title:'Beautiful!'});
+  var expected = '<h1>Hello Beautiful!</h1>'
+  t.ok(actual.indexOf(expected) > -1, 'Hello Beautiful!');
   t.end();
 });
 
