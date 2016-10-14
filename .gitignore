@@ -38,3 +38,6 @@ jspm_packages
 
 .DS_Store
 db
+
+#goodparts symlink
+.eslintrc.js

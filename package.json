@@ -15,16 +15,19 @@
     "quick": "./node_modules/tape/bin/tape ./test/*.test.js | node_modules/tap-spec/bin/cmd.js",
     "test": "istanbul cover ./node_modules/tape/bin/tape ./test/*.test.js  | node_modules/tap-spec/bin/cmd.js",
     "coverage": "istanbul cover ./node_modules/tape/bin/tape ./test/*.test.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "lint": "node_modules/.bin/goodparts .",
     "start": "node example/todo/server.js",
     "report": "open coverage/lcov-report/index.html",
     "compile": "node_modules/.bin/riot example/basic/views/ example/compiled.js",
     "todo": "node_modules/.bin/nodemon example/todo/server.js"
   },
   "pre-commit": [
+    "lint",
     "coverage"
   ],
   "devDependencies": {
     "decache": "^4.1.0",
+    "goodparts": "^1.1.1",
     "hapi": "^15.0.3",
     "istanbul": "^0.4.5",
     "level": "^1.4.0",
