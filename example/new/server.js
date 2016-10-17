@@ -19,6 +19,7 @@ server.register([Vision, Inert], function (err) {
     engines: { tag: HapiRiot },
     relativeTo: __dirname,
     path: 'views',
+    compiledFileRoute: '/compiled.js',
     compileOptions: {}
   });
 
@@ -32,7 +33,7 @@ server.register([Vision, Inert], function (err) {
 
   server.route({
     method: 'GET',
-    path: '/riot.js',
+    path: '/compiled.js',
     handler: function (request, reply) {
       reply.file(Path.join(__dirname, 'compiled.js'));
     }
