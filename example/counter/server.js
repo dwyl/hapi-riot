@@ -23,7 +23,7 @@ server.register([Vision, Inert], function (err) {
     compileOptions: {
       layoutPath: Path.join(__dirname, 'layout'),
       layout: 'not_default.html',
-      compiledFileRoute: '/compiled.js'
+      compiledFileRoute: '/bundle.js'
     },
     path: 'views'
   });
@@ -38,9 +38,9 @@ server.register([Vision, Inert], function (err) {
 
   server.route({
     method: 'GET',
-    path: '/compiled.js',
+    path: '/bundle.js',
     handler: function (request, reply) {
-      reply.file(Path.join(__dirname, 'compiled.js'));
+      reply.file(Path.join(__dirname, 'bundle.js'));
     }
   });
 

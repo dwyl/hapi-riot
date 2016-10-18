@@ -189,7 +189,9 @@ With vision plugin configured and an `index.tag` compiled and place in right dir
 
 ## Examples
 
-More/Complete examples are in the `/examples` directory.  
+Run ```npm start``` to see a basic example.
+
+More/Complete examples are in the [/example directory](https://github.com/dwyl/hapi-riot/tree/master/example).  
 
 If you stuck or need any help just [ask](https://github.com/dwyl/hapi-riot/issues)!
 

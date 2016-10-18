@@ -18,8 +18,8 @@
     "lint": "node_modules/.bin/goodparts .",
     "start": "npm run compile:basic && node example/basic/server.js",
     "report": "open coverage/lcov-report/index.html",
-    "compile:basic": "node_modules/.bin/riot example/basic/views/ example/basic/compiled.js",
-    "compile:counter": "node_modules/.bin/riot example/counter/views/ example/counter/compiled.js",
+    "compile:basic": "node_modules/.bin/riot example/basic/views/ example/basic/bundle.js",
+    "compile:counter": "node_modules/.bin/riot example/counter/views/ example/counter/bundle.js",
     "compile:examples": "npm run compile:basic && npm run compile:counter"
   },
   "pre-commit": [
