@@ -3,6 +3,9 @@
 var Hapi = require('hapi');
 var Vision = require('vision');
 var assert = require('assert');
+var Path = require('path');
+var Inert = require('inert');
+
 var HapiRiotViews = require('../../lib/index.js');
 
 var server = new Hapi.Server();
@@ -10,19 +13,17 @@ var port = process.env.PORT || 8000;
 
 server.connection({ port: port });
 
-server.register(Vision, function (err) {
-  console.log(err); // eslint-disable-line
+server.register([Vision, Inert], function (err) {
   assert(!err); // Halt start if Vision fails to load.
 
   server.views({
     engines: { tag: HapiRiotViews },
     relativeTo: __dirname,
     path: 'views',
-    compileOptions: {} // { keeping these here till we add "Universal"
-      // test: 'true',
-      // layoutPath: Path.join(__dirname, 'views'),
-      // layout: 'layout'
-    // }
+    compileOptions: {
+      layoutPath: Path.join(__dirname, 'layout'),
+      layout: true
+    }
   });
 
   server.route({
@@ -38,6 +39,14 @@ server.register(Vision, function (err) {
     path: '/hello/{yourname*}',
     handler: function (request, reply) {
       reply.view('hello', { name: request.params.yourname || 'World' });
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/compiled.js',
+    handler: function (request, reply) {
+      reply.file(Path.join(__dirname, 'compiled.js'));
     }
   });
 
