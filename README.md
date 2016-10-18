@@ -109,8 +109,8 @@ pre-compiled and then included. You'll also need to set up a route in your
 server to handle your compiled file. Follow these steps to compile and route your
 files:
 
-1. Configure your hapi-riot `compileOptions` view engine with your `compiledFileRoute`. This
-is the endpoint that you want to expose for your compiled file:
+1. Configure your hapi-riot `compileOptions` view engine with your `compiledFileRoute`. This is the endpoint that you want to expose for your
+compiled file:
 
 ```js
 server.views({
