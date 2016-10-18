@@ -193,8 +193,6 @@ server.views({ // initialise
 });
 ```
 
-
-
 ## Lessons Learned & "Gotchas"
 
 ### 1. Don't leave tag files empty!
