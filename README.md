@@ -109,7 +109,7 @@ pre-compiled and then included. You'll also need to set up a route in your
 server to handle your compiled file. Follow these steps to compile and route your
 files:
 
-1. Configure your `hapi-riot` view engine with your `compiledFileRoute`. This
+1. Configure your hapi-riot `compileOptions` view engine with your `compiledFileRoute`. This
 is the endpoint that you want to expose for your compiled file:
 
 ```js
@@ -117,7 +117,9 @@ server.views({
       engines: { tag: HapiRiot },
       relativeTo: __dirname,
       path: 'views',
-      compiledFileRoute: '/choose_a_compiled_file_route.js'
+      compileOptions: {
+        compiledFileRoute: '/compiled.js'
+      }
     });
 ```
 
@@ -127,12 +129,13 @@ Run the following command in your command line:
 `riot [path/to/your/views/folder] [output/file/path]`  
 For example: `riot example/lib/views compile.js` -> this will compile your
 views and the output the results into a file called `compile.js` in the root of
-your file tree.
+your file tree. It will be a combination of the contents of all of your `.tag`
+files.
 
 3. Set up route to compiled file
 
 You'll need to add a route to your server that can handle requests to your
-compiled file, made by `hapi-riot`. Add the following route:
+compiled file, made by **hapi-riot**. Add the following route:
 
 ```js
 server.route({
@@ -146,12 +149,18 @@ server.route({
 });
 ```
 
-## _Optional_ `compileOptions` (_That Simplify Your Life_!)
+## `compileOptions` (_That Simplify Your Life_!)
 
 We have added a few _features_ to _simplify_ our own projects.  
 These are _documented_ below, but are not meant to be fit for _everyone_.
 None are enabled by _default_ so if you "just" want to render simple
 Riot Components as your Hapi Views, follow the simple example.
+
+### `compiledFileRoute` (***REQUIRED***)
+
+This is the route you specify to include javascript within your tags. Hapi-riot
+will then inject a link to your compiled file into your output which makes the
+specified methods in your tags available.
 
 ### `doctype` (_default_)
 
