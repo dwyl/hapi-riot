@@ -22,7 +22,8 @@ server.register([Vision, Inert], function (err) {
     relativeTo: __dirname,
     compileOptions: {
       layoutPath: Path.join(__dirname, 'layout'),
-      layout: 'not_default.html'
+      layout: 'not_default.html',
+      compiledFileRoute: '/compiled.js'
     },
     path: 'views'
   });

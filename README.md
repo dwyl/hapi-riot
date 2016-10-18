@@ -102,13 +102,65 @@ server.register(Vision, (err) => {
 > Note: More/Complete examples are in the `/examples` directory.  
 > If you stuck or need any help just ask! https://github.com/dwyl/hapi-riot/issues
 
+## Required `compiledFileRoute`
 
-## _Optional_ `compileOptions` (_That Simplify Your Life_!)
+In order to serve javascript and CSS with your tags, these files have to be
+pre-compiled and then included. You'll also need to set up a route in your
+server to handle your compiled file. Follow these steps to compile and route your
+files:
+
+1. Configure your hapi-riot `compileOptions` view engine with your `compiledFileRoute`. This is the endpoint that you want to expose for your
+compiled file:
+
+```js
+server.views({
+      engines: { tag: HapiRiot },
+      relativeTo: __dirname,
+      path: 'views',
+      compileOptions: {
+        compiledFileRoute: '/compiled.js'
+      }
+    });
+```
+
+2. Compile your files
+
+Run the following command in your command line:  
+`riot [path/to/your/views/folder] [output/file/path]`  
+For example: `riot example/lib/views compile.js` -> this will compile your
+views and the output the results into a file called `compile.js` in the root of
+your file tree. It will be a combination of the contents of all of your `.tag`
+files.
+
+3. Set up route to compiled file
+
+You'll need to add a route to your server that can handle requests to your
+compiled file, made by **hapi-riot**. Add the following route:
+
+```js
+server.route({
+  method: 'GET',
+  // this is the same as what you supplied to the view engine in step 1
+  path: '/your_compiled_file_route.js',
+  handler: function (request, reply) {
+    // this is what you specified in your compilation command
+    reply.file(Path.join(__dirname, 'your_compiled_output_file.js'));
+  }
+});
+```
+
+## `compileOptions` (_That Simplify Your Life_!)
 
 We have added a few _features_ to _simplify_ our own projects.  
 These are _documented_ below, but are not meant to be fit for _everyone_.
 None are enabled by _default_ so if you "just" want to render simple
 Riot Components as your Hapi Views, follow the simple example.
+
+### `compiledFileRoute` (***REQUIRED***)
+
+This is the route you specify to include javascript within your tags. Hapi-riot
+will then inject a link to your compiled file into your output which makes the
+specified methods in your tags available.
 
 ### `doctype` (_default_)
 

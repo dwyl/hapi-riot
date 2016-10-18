@@ -2,6 +2,7 @@
 
 var Hapi = require('hapi');
 var Vision = require('vision');
+var Inert = require('inert');
 var assert = require('assert');
 var level = require('level'); // https://github.com/Level/level
 var path = require('path');
@@ -13,13 +14,18 @@ var server = new Hapi.Server();
 var port = process.env.PORT || 8000;
 
 server.connection({ port: port });
-server.register(Vision, function (err) {
+server.register([Vision, Inert], function (err) {
   assert(!err); // Halt start if Vision fails to load.
 
   server.views({
     engines: { tag: HapiRiot },
     relativeTo: __dirname,
-    path: 'views'
+    path: 'views',
+    compileOptions: {
+      layoutPath: path.join(__dirname, 'layout'),
+      layout: true,
+      compiledFileRoute: '/compiled.js'
+    }
   });
 
   server.route({
@@ -129,6 +135,14 @@ server.register(Vision, function (err) {
         opts.path = request.path;
         reply.view('index', opts);
       });
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/compiled.js',
+    handler: function (request, reply) {
+      reply.file(path.join(__dirname, 'compiled.js'));
     }
   });
 
