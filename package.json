@@ -14,7 +14,7 @@
   "scripts": {
     "quick": "./node_modules/tape/bin/tape ./test/*.test.js | node_modules/tap-spec/bin/cmd.js",
     "test": "istanbul cover ./node_modules/tape/bin/tape ./test/*.test.js  | node_modules/tap-spec/bin/cmd.js",
-    "coverage": "istanbul cover ./node_modules/tape/bin/tape ./test/*.test.js && istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "coverage": "npm run test && istanbul check-coverage",
     "lint": "node_modules/.bin/goodparts .",
     "start": "node example/basic/server.js",
     "report": "open coverage/lcov-report/index.html",

@@ -14,7 +14,6 @@ var port = process.env.PORT || 8000;
 server.connection({ port: port });
 
 server.register([Vision, Inert], function (err) {
-  console.log(err); // eslint-disable-line
   assert(!err); // Halt start if Vision fails to load.
 
   server.views({
