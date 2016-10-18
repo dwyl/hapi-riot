@@ -19,7 +19,12 @@ server.register(Vision, function (err) {
   server.views({
     engines: { tag: HapiRiot },
     relativeTo: __dirname,
-    path: 'views'
+    path: 'views',
+    compileOptions: {
+      layoutPath: path.join(__dirname, 'layout'),
+      layout: true,
+      compiledFileRoute: '/compiled.js'
+    }
   });
 
   server.route({
