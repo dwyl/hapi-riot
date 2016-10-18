@@ -18,7 +18,9 @@
     "lint": "node_modules/.bin/goodparts .",
     "start": "node example/basic/server.js",
     "report": "open coverage/lcov-report/index.html",
-    "compile": "node_modules/.bin/riot example/basic/views/ example/compiled.js"
+    "compile:basic": "node_modules/.bin/riot example/basic/views/ example/basic/compiled.js",
+    "compile:counter": "node_modules/.bin/riot example/counter/views/ example/counter/compiled.js",
+    "compile": "npm run compile:basic && npm run compile:counter"
   },
   "pre-commit": [
     "lint",
