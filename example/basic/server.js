@@ -22,7 +22,8 @@ server.register([Vision, Inert], function (err) {
     path: 'views',
     compileOptions: {
       layoutPath: Path.join(__dirname, 'layout'),
-      layout: true
+      layout: true,
+      compiledFileRoute: '/compiled.js'
     }
   });
 
