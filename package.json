@@ -16,11 +16,11 @@
     "test": "istanbul cover ./node_modules/tape/bin/tape ./test/*.test.js  | node_modules/tap-spec/bin/cmd.js",
     "coverage": "npm run test && istanbul check-coverage",
     "lint": "node_modules/.bin/goodparts .",
-    "start": "node example/basic/server.js",
+    "start": "npm run compile:basic && node example/basic/server.js",
     "report": "open coverage/lcov-report/index.html",
     "compile:basic": "node_modules/.bin/riot example/basic/views/ example/basic/compiled.js",
     "compile:counter": "node_modules/.bin/riot example/counter/views/ example/counter/compiled.js",
-    "compile": "npm run compile:basic && npm run compile:counter"
+    "compile:examples": "npm run compile:basic && npm run compile:counter"
   },
   "pre-commit": [
     "lint",
@@ -33,7 +33,6 @@
     "inert": "^4.0.2",
     "istanbul": "^0.4.5",
     "level": "^1.4.0",
-    "nodemon": "^1.10.2",
     "pre-commit": "^1.1.3",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
