@@ -1,15 +1,8 @@
-<html>
-  <head title={ opts.title }></head>
-  <body>
-    <h1>Hello World { time } ... { title }</h1>
-    <p>{state}</p>
-
-    <footer></footer>
-    <input type='hidden' id='state' value={state}>
+<index>
+  <h1>Hello World { time } ... { title }</h1>
+  <footer></footer>
   <script>
     this.time = Date.now();
     this.title = opts.title;
-    this.state = JSON.stringify({title: opts.title });
   </script>
-  </body>
-</html>
+</index>
