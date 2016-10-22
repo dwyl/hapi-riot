@@ -130,7 +130,7 @@ server.views({ // initialise
 We have added a few _features_ to _simplify_ our own projects but are not meant to be fit for _everyone_.
 
 
-#### `compiledFileRoute` **REQUIRED**
+#### `compiledFileRoute` **REQUIRED** *default: '/bundle.js'*
 
 This is the oath you specified in step 3 to include javascript within your tags. `hapi-riot`
 will then inject a link to your compiled file into your output which makes the
