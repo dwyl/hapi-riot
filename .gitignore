@@ -41,3 +41,5 @@ db
 
 #goodparts symlink
 .eslintrc.js
+
+bundle.js
