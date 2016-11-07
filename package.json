@@ -1,7 +1,7 @@
 {
   "name": "hapi-riot",
   "description": "Render Riot.js Components with Vision in your Hapi.js Web Applications!",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "lib/index.js",
   "homepage": "https://github.com/dwyl/hapi-riot",
   "repository": {
