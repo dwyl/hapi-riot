@@ -40,7 +40,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "riot": "^2.6.1"
+    "riot": "^3.0.5"
   },
   "bugs": {
     "url": "https://github.com/dwyl/hapi-riot/issues"
